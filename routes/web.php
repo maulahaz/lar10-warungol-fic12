@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SoalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +13,6 @@ use App\Http\Controllers\SoalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/pwd', function () {
-    // return view('homepage');
-    return die(Hash::make('pass123'));
-});
 
 Route::get('/', function () {
     return view('auth.auth-login');
@@ -41,15 +35,22 @@ Route::middleware(['auth'])->group(function () {
     Route::post('users/changepass/{user}', [UserController::class, 'updatePassword']);
     Route::resource('users', UserController::class);
 
-    //--Soal:
+    //--Category
     //-----------------------------------------------------------------
-    Route::get('soal/list', [UserController::class, 'list']);
-    Route::resource('soal', SoalController::class);
+    Route::group(['namespace' => 'App\Http\Controllers'], function(){
+        Route::Resource('/category', CategoryController::class);
+    });
+
+    //--Product
+    //-----------------------------------------------------------------
+    Route::group(['namespace' => 'App\Http\Controllers'], function(){
+        Route::Resource('/product', ProductController::class);
+    });
 });
 
-//--Soals
+//--Category
 //-----------------------------------------------------------------
 // Route::group(['namespace' => 'App\Http\Controllers'], function(){
-//     Route::get('soal/list', 'SoalController@list');
-//     Route::Resource('/soal', SoalController::class);
+//     Route::get('category/list', 'CategoryController@list');
+//     Route::Resource('/category', CategoryController::class);
 // });

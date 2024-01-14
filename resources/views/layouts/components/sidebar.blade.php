@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('home') }}">Stisla</a>
+            <a href="{{ route('home') }}">WarungMHz</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('home') }}">St</a>
+            <a href="{{ route('home') }}">MHz</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -13,7 +13,7 @@
                 <a href="#"
                     class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                    <li class="{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}">
                         <a class="nav-link"
                             href="{{ url('home') }}">Sub Menu-1</a>
                     </li>
@@ -29,10 +29,16 @@
                     </i> <span>Users</span>
                 </a>
             </li>
-            <li class="{{ Request::is('soal') ? 'active' : '' }}">
+            <li class="{{ Request::is('category') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('soal') }}"><i class="fas fa-question">
-                    </i> <span>Bank Soal</span>
+                    href="{{ url('category') }}"><i class="fas fa-tags">
+                    </i> <span>Categories</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('product') ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('product') }}"><i class="fas fa-star">
+                    </i> <span>Products</span>
                 </a>
             </li>
         </ul>
