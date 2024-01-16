@@ -28,10 +28,10 @@
             </div>
             <div class="card">
                 @if (!empty($dtCategory))
-                <form action="{{ route('category.update', $dtCategory) }}" method="POST" id="frm_update" >
+                <form action="{{ route('category.update', $dtCategory) }}" method="POST" id="frm_update" enctype="multipart/form-data">
                     @method('PUT')
                     @else
-                <form action="{{ route('category.store') }}" method="POST" id="frm_create">
+                <form action="{{ route('category.store') }}" method="POST" id="frm_create" enctype="multipart/form-data">
                     @endif
                     @csrf
                     <div class="card-header">
@@ -63,6 +63,23 @@
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Picture</label>
+                            <input type="file" name="picture"
+                                class="form-control @error('picture')
+                                is-invalid
+                                @enderror">
+                            @error('picture')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                            @if(!empty($dtCategory) && $dtCategory->picture)
+                            <img src="{{ asset('uploads/product/'.$dtCategory->picture) }}" class="img-fluid border mt-3 p-1" width="200px"/>
+                            @else
+                            <p>No image found</p>
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer text-left">

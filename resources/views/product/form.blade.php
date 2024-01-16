@@ -28,10 +28,10 @@
             </div>
             <div class="card">
                 @if (!empty($dtProduct))
-                <form action="{{ route('product.update', $dtProduct) }}" method="POST" id="frm_update" >
+                <form action="{{ route('product.update', $dtProduct) }}" method="POST" id="frm_update" enctype="multipart/form-data">
                     @method('PUT')
                     @else
-                <form action="{{ route('product.store') }}" method="POST" id="frm_create">
+                <form action="{{ route('product.store') }}" method="POST" id="frm_create" enctype="multipart/form-data">
                     @endif
                     @csrf
                     <div class="card-header">
@@ -53,16 +53,74 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input type="text"
-                                class="form-control @error('description')
+                            <textarea class="form-control @error('description')
                                 is-invalid
-                                @enderror"
-                                name="description" value="{{ !empty($dtProduct) ? $dtProduct->description : old('description') }}">
-                            @error('email')
+                                @enderror" name="description" id="description" rows="10" placeholder="Description">{{ !empty($dtProduct) ? $dtProduct->description : old('description') }}</textarea>
+                            @error('description')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <?php $optCategId = [1=>'Yes', 0=>'No']?>
+                            <select name="category_id" id="category_id" class="form-control @error('category_id')
+                                is-invalid
+                                @enderror">
+                                <option value="" holder>--Please select--</option>
+                                @foreach($optCategId as $key => $value)
+                                <option value="<?= $key ?>" @if(!empty($dtProduct) && $dtProduct->category_id == $key) selected @endif><?= $value ?></option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="number"
+                                class="form-control @error('price')
+                                is-invalid
+                                @enderror"
+                                name="price" value="{{ !empty($dtProduct) ? $dtProduct->price : old('price') }}">
+                            @error('price')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="number"
+                                class="form-control @error('stock')
+                                is-invalid
+                                @enderror"
+                                name="stock" value="{{ !empty($dtProduct) ? $dtProduct->stock : old('stock') }}">
+                            @error('stock')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Picture</label>
+                            <input type="file" name="picture"
+                                class="form-control @error('picture')
+                                is-invalid
+                                @enderror">
+                            @error('picture')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                            @if(!empty($dtProduct) && $dtProduct->picture)
+                            <img src="{{ asset('uploads/product/'.$dtProduct->picture) }}" class="img-fluid border mt-3 p-1" width="200px"/>
+                            @else
+                            <p>No image found</p>
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer text-left">

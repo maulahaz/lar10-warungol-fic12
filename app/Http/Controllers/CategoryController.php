@@ -37,9 +37,11 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
-            'picture'  => 'required|max:255',
+            'picture'  => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
         $data = $request->all();
+
+        dd($data);
         CategoryModel::create($data);
         return redirect()
             ->route("category.index")
