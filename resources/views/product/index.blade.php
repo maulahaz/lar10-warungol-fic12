@@ -45,6 +45,7 @@
                             <div class="table-responsive">
                                 <table class="table-striped table">
                                     <tr>
+                                        <th>No.</th>
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Price</th>
@@ -58,7 +59,7 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{ $row->name }}</td>
-                                        <td>{{ $row->category_id }}</td>
+                                        <td>{{ $row->category->name }}</td>
                                         <td>{{ $row->price }}</td>
                                         <td>{{ $row->stock }}</td>
                                         <td>{{ $row->created_at }}</td>

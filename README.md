@@ -1,9 +1,9 @@
-# Project : xx 
+# Project : lar10-warungol-fic12
 ***************************************************************
-A Laravel project description <br><br>
+An Online Shop Backend App (using Laravel v.10, Fortify and Stisla) for FIC-12<br><br>
 
 ### Lebih Detail:
-- Started at: Week-xx of MM-YY
+- Started at: Wk1Jan24
 - PHP Framework: Laravel versi 10.
 - DB: MySQL.
 - Admin template: Stisla.
@@ -13,8 +13,8 @@ Includes in this template:
 - Packages: Fortify
 
 # References:
+- [Github: bahrie127/laravel-onlineshop-backend](https://github.com/bahrie127/laravel-onlineshop-backend)
 - [Ytb: xxx](https://www.youtube.com)
-- [Github: Creator/Repository](https://www.Github.com)
 
 # Snapshots:
 ![noimage.png)

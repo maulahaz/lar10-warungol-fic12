@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         $data = \App\Models\CategoryModel::when($request->id, function($query, $id){
             return $query->where('id', $id);
-        })->get();
+        })->get()->take(4);
 
         return response()->json([
             'status' => 'success',

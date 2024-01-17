@@ -22,6 +22,7 @@ class ProductModelFactory extends Factory
             'category_id' => fake()->numberBetween(1, 4),
             'price' => fake()->numberBetween(10000, 100000),
             'stock' => fake()->numberBetween(1, 20),
+            'readiness' => fake()->randomElement(['ready', 'order 1d','order 3d','order 7d']),
             'picture' => fake()->imageUrl(),
         ];
     }

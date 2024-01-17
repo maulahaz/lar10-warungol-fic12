@@ -45,7 +45,7 @@
                             <div class="table-responsive">
                                 <table class="table-striped table">
                                     <tr>
-                                        <th>id</th>
+                                        <th>No.</th>
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Picture</th>

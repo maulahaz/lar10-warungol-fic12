@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('price');
             $table->boolean('is_available')->default(true);
             $table->integer('stock');
+            $table->string('readiness')->default('ready');
             $table->string('picture')->nullable();
             $table->timestamps();
         });

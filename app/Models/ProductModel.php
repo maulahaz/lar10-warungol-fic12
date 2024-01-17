@@ -18,6 +18,11 @@ class ProductModel extends Model
         'picture',
         'price',
         'stock',
+        'readiness',
         'is_available',
     ];
+
+    public function category() {
+        return $this->belongsTo(CategoryModel::class);
+    }
 }

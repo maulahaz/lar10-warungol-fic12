@@ -14,16 +14,18 @@ class ProductController extends Controller
     {
         $data["type_menu"] = "product";
         $data["isFiltered"] = (!is_null($request->input("search"))) ? true : false;
-        $data["dtProducts"] = DB::table("tbl_products")
-            ->when($request->input("search"), function ($query, $condition) {
-                return $query->where(
-                    "name",
-                    "like",
-                    "%" . $condition . "%"
-                );
-            })
-            ->orderBy("id", "desc")
-            ->paginate(10);
+        $data["dtProducts"] = \App\Models\ProductModel::paginate(5);
+        // $data["dtProducts"] = DB::table("tbl_products")
+        //     ->when($request->input("search"), function ($query, $condition) {
+        //         return $query->where(
+        //             "name",
+        //             "like",
+        //             "%" . $condition . "%"
+        //         );
+        //     })
+        //     ->orderBy("id", "desc")
+        //     ->paginate(8);
+        //     dd($data);
         return view("product.index", $data);
     }
 
