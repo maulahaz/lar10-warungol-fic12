@@ -24,11 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //--CATEGORY
 //-----------------------------------------------------------------
-Route::apiResource('category', \App\Http\Controllers\Api\CategoryController::class);//->middleware('auth:sanctum');
+Route::apiResource('category_api', \App\Http\Controllers\Api\CategoryController::class);//->middleware('auth:sanctum');
 
 //--PRODUCT
 //-----------------------------------------------------------------
-Route::apiResource('product', \App\Http\Controllers\Api\ProductController::class);//->middleware('auth:sanctum');
+// Route::apiResource('product', \App\Http\Controllers\Api\ProductController::class);//->middleware('auth:sanctum');
+Route::get('product', [App\Http\Controllers\Api\ProductController::class, 'index']);//->middleware('auth:sanctum');
 
 //--UJIAN : Create
 //-----------------------------------------------------------------

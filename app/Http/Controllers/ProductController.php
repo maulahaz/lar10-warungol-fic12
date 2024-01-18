@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         $data["type_menu"] = "product";
         $data["isFiltered"] = (!is_null($request->input("search"))) ? true : false;
-        $data["dtProducts"] = \App\Models\ProductModel::paginate(5);
+        $data["dtProducts"] = \App\Models\ProductModel::paginate(8);
         // $data["dtProducts"] = DB::table("tbl_products")
         //     ->when($request->input("search"), function ($query, $condition) {
         //         return $query->where(
