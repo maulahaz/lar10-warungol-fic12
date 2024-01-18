@@ -55,7 +55,8 @@
                                     <?php $no = 1; ?>
                                     @foreach ($categories as $row)
                                     <tr>
-                                        <td>{{$no++}}</td>
+                                        <!-- <td>{{$no++}}</td> -->
+                                        <td>{{($categories->currentPage() - 1)  * $categories->perPage() + $loop->iteration}}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->description }}</td>
                                         <td>{{ $row->picture }}</td>

@@ -57,7 +57,7 @@
                                     <?php $no = 1; ?>
                                     @foreach ($dtProducts as $row)
                                     <tr>
-                                        <td>{{$no++}}</td>
+                                        <td>{{($dtProducts->currentPage() - 1)  * $dtProducts->perPage() + $loop->iteration}}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->category->name }}</td>
                                         <td>{{ $row->price }}</td>

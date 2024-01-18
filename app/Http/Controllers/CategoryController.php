@@ -22,7 +22,7 @@ class CategoryController extends Controller
                 );
             })
             ->orderBy("id", "desc")
-            ->paginate(10);
+            ->paginate(8);
         return view("category.index", $data);
     }
 
