@@ -17,5 +17,8 @@ yarn-error.log
 /.idea
 /.vscode
 
+#--Avoid DS_Store
 .DS_Store
+._.DS_Store
 **/.DS_Store
+**/._.DS_Store
