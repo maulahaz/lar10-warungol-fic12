@@ -31,6 +31,12 @@ Route::apiResource('category_api', \App\Http\Controllers\Api\CategoryController:
 // Route::apiResource('product', \App\Http\Controllers\Api\ProductController::class);//->middleware('auth:sanctum');
 Route::get('product', [App\Http\Controllers\Api\ProductController::class, 'index']);//->middleware('auth:sanctum');
 
+//--ADDRESS
+//-----------------------------------------------------------------
+Route::get('address-by-user', [App\Http\Controllers\Api\AddressController::class, 'addressByUser'])->middleware('auth:sanctum');
+Route::apiResource('address', \App\Http\Controllers\Api\AddressController::class)->middleware('auth:sanctum');
+// Route::get('address', [App\Http\Controllers\Api\AddressController::class, 'index']);//->middleware('auth:sanctum');
+
 //--UJIAN : Create
 //-----------------------------------------------------------------
 Route::post('/create-ujian', [UjianController::class, 'create'])->middleware('auth:sanctum');
