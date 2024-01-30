@@ -60,7 +60,7 @@ class AddressController extends Controller
                 'status' => 'success',
                 'msg' => 'success',
                 'data' => $postedData,
-            ]);
+            ],201);
         }else{
             return response()->json([
                 'status' => 'error',
