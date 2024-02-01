@@ -46,6 +46,12 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['namespace' => 'App\Http\Controllers'], function(){
         Route::Resource('/product', ProductController::class);
     });
+
+    //--Order
+    //-----------------------------------------------------------------
+    Route::group(['namespace' => 'App\Http\Controllers'], function(){
+        Route::Resource('/order', OrderController::class);
+    });
 });
 
 //--Category

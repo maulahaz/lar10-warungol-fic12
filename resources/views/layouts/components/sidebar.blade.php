@@ -41,6 +41,12 @@
                     </i> <span>Products</span>
                 </a>
             </li>
+            <li class="{{ Request::is('order') ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('order') }}"><i class="fas fa-shopping-cart">
+                    </i> <span>Orders</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
