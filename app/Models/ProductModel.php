@@ -20,9 +20,19 @@ class ProductModel extends Model
         'stock',
         'readiness',
         'is_available',
+        'seller_id',
+        'warung_id',
     ];
 
     public function category() {
         return $this->belongsTo(CategoryModel::class);
     }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'seller_id');
+    }
+
+    // public function warung() {
+    //     return $this->belongsTo(WarungModel::class, 'warung_id');
+    // }
 }

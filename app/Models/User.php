@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(AddressModel::class);
     }
+
+    public function warung()
+    {
+        return $this->hasMany(WarungModel::class);
+    }
+
+    public function product()
+    {
+        return $this->hasMany(ProductModel::class);
+    }
 }
