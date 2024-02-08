@@ -46,3 +46,12 @@ Route::get('/get-soal-ujian', [UjianController::class, 'getSoalUjianByKategori']
 Route::post('/jawab-soal-ujian', [UjianController::class, 'jawabSoalUjian'])->middleware('auth:sanctum');
 Route::get('/get-exam-result-by-category', [UjianController::class, 'getExamResultByKategori'])->middleware('auth:sanctum');
 Route::get('/get-exam-result', [UjianController::class, 'getExamResult'])->middleware('auth:sanctum');
+
+//--ORDER
+//-----------------------------------------------------------------
+Route::post('/order', [\App\Http\Controllers\Api\OrderController::class, 'order'])->middleware('auth:sanctum');
+
+//--CALLBACK
+//-----------------------------------------------------------------
+Route::post('/callback-order', [\App\Http\Controllers\Api\CallbackController::class, 'callbackOrder']);
+// https://9e14-2001-8f8-162d-a8e0-945c-b13f-6155-b77e.ngrok-free.app
