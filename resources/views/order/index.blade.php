@@ -47,6 +47,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Trans. Date</th>
+                                        <th>Customer</th>
                                         <th>Total</th>
                                         <th>Status</th>
                                         <th>Shipping Name</th>
@@ -58,14 +59,15 @@
                                     <tr>
                                         <td>{{($dtOrders->currentPage() - 1)  * $dtOrders->perPage() + $loop->iteration}}</td>
                                         <td>{{ $row->created_at }}</td>
+                                        <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->total_cost }}</td>
                                         <td>{{ $row->status }}</td>
                                         <td>{{ $row->shipping_service }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <a href="{{ route('order.edit', $row->id) }}"
-                                                    class="btn btn-info btn-icon">
-                                                <i class="fas fa-edit"></i>
+                                                    class="btn btn-info btn-icon" data-toggle="tooltip" data-placement="top" title data-original-title="Update Shipment">
+                                                <i class="fas fa-truck-fast"></i>
                                                 </a>
                                                 <a href="#" data-id="{{$row->id}}" class="btn btn-danger btn-icon ml-2 swal-confirm">
                                                     <i class="fas fa-times"></i>

@@ -1,7 +1,8 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('home') }}">WarungMHz</a>
+            <a href="{{ route('home') }}">{{ MyApp::APP_TITLE }}</a>
+            {{-- <a href="{{ route('home') }}">{{ config('myapp.APP_TITLE') }}</a> --}}
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('home') }}">MHz</a>

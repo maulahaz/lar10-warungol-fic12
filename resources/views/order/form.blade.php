@@ -39,7 +39,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Resi Number</label>
+                            <label>Shipment Number(Resi)</label>
                             <input type="text"
                                 class="form-control @error('shipping_resi')
                                 is-invalid
@@ -54,25 +54,36 @@
 
                         <div class="form-group">
                             <label>Status</label>
-                            <?php $optStatus = [1=>'Yes', 0=>'No']?>
-                            <select name="category_id" id="category_id" class="form-control @error('category_id')
+                            <?php //$optShipmentStatus = [1=>'Yes', 0=>'No']?>
+                            <select name="status" id="status" class="form-control  col-sm-4 @error('status')
                                 is-invalid
                                 @enderror">
                                 <option value="" holder>--Please select--</option>
-                                @foreach($optStatus as $key => $value)
-                                <option value="<?= $key ?>" @if(!empty($dtOrder) && $dtOrder->category_id == $key) selected @endif><?= $value ?></option>
+                                @foreach($optShipmentStatus as $key => $value)
+                                <option value="<?= $key ?>" @if(!empty($dtOrder) && $dtOrder->status == $key) selected @endif><?= $value ?></option>
                                 @endforeach
                             </select>
-                            @error('category_id')
+                            @error('status')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Shippment Proof</label>
+                            <label>Notes</label>
+                            <textarea class="form-control @error('notes')
+                                is-invalid
+                                @enderror" name="notes" id="notes" rows="3" placeholder="Notes">{{ !empty($dtProduct) ? $dtProduct->notes : old('notes') }}</textarea>
+                            @error('notes')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Shipment Proof</label>
                             <input type="file" name="shipping_resi_picture"
-                                class="form-control @error('shipping_resi_picture')
+                                class="form-control col-sm-4 @error('shipping_resi_picture')
                                 is-invalid
                                 @enderror">
                             @error('shipping_resi_picture')
@@ -80,8 +91,8 @@
                                 {{ $message }}
                             </div>
                             @enderror
-                            @if(!empty($dtOrder) && $dtOrder->shipping_resi_picture)
-                            <img src="{{ asset('uploads/product/'.$dtOrder->shipping_resi_picture) }}" class="img-fluid border mt-3 p-1" width="200px"/>
+                            @if(!empty($dtOrder) && $dtOrder->shipping_proof)
+                            <img src="{{ asset('uploads/order/'.$dtOrder->shipping_proof) }}" class="img-fluid border mt-3 p-1" width="200px"/>
                             @else
                             <p>No image found</p>
                             @endif

@@ -19,12 +19,14 @@ class OrderModel extends Model
         'total_cost',
         'status',
         'payment_method',
+        'transaction_number',
         'payment_va_name',
         'payment_va_number',
         'payment_ewallet',
         'shipping_service',
         'shipping_resi',
-        'transaction_number',
+        'shipping_proof',
+        'notes',
     ];
 
     public function user()

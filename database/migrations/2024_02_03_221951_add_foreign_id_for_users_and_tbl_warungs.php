@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tbl_products', function($table) 
+        Schema::table('tbl_products', function(Blueprint $table) 
         {
             $table->bigInteger('seller_id')->unsigned()->nullable();
             $table->bigInteger('warung_id')->unsigned()->nullable();

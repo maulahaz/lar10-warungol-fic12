@@ -9,9 +9,16 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
+        $condition = $request->input("search");
+
         $data["type_menu"] = "order";
         $data["isFiltered"] = (!is_null($request->input("search"))) ? true : false;
-        $data["dtOrders"] = \App\Models\OrderModel::paginate(8);
+        $data["dtOrders"] = \App\Models\OrderModel::where('status', 'like', '%'.$condition.'%')
+            ->orWhere('shipping_service', 'like', '%'.$condition.'%')
+            // ->orWhereHas('type', function ($query) use ($key) {
+            //     $query->where('status', 'like', $key.'%');
+            // })
+            ->paginate(8);
         return view("order.index", $data);
     }
 
@@ -40,6 +47,7 @@ class OrderController extends Controller
     {
         $data["type_menu"] = "order";
         $data["dtOrder"] = \App\Models\OrderModel::findOrFail($id);
+        $data["optShipmentStatus"] = $this->_getShipmentOption();
         return view("order.form", $data);
     }
 
@@ -57,6 +65,7 @@ class OrderController extends Controller
         $postedData = [
             'status' => $request->status,
             'shipping_resi' => $request->shipping_resi,
+            'notes' => $request->notes,
         ];
 
         //--Picture:
@@ -67,12 +76,12 @@ class OrderController extends Controller
             $newFilename = "Resi-" . $id . "-" . time() . "-" . $fileName . "." . $fileExtension;
             $request->shipping_resi_picture->move(public_path('uploads/order'), $newFilename);
             //--Delete Old File if any:
-            if ($dtOrder->shipping_resi_picture != null) {
-                $oldFile = public_path('uploads/order/' . $dtOrder->shipping_resi_picture);
+            if ($dtOrder->shipping_proof != null) {
+                $oldFile = public_path('uploads/order/' . $dtOrder->shipping_proof);
                 unlink($oldFile);
             }
             //--update filename in DB:
-            $postedData['shipping_resi_picture'] = $newFilename;
+            $postedData['shipping_proof'] = $newFilename;
         } else {
             unset($request->shipping_resi_picture);
         }
@@ -90,5 +99,14 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    function _getShipmentOption()
+    {
+        $options = \App\Models\OptionModel::where('for','shipment_status')->get();
+        foreach($options as $option){
+            $data[$option->key] = $option->value;
+        }
+        return $data;
     }
 }

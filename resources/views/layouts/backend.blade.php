@@ -3,30 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
-        name="viewport">
-    <title>@yield('title') &mdash; WarungMHz</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>@yield('title') &mdash; {{ Config::get('myapp.APP_TITLE') }}</title>
 
     <!-- General CSS Files -->
-    <link rel="stylesheet"
-        href="{{ asset('stisla/library/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    <link rel="stylesheet" href="{{ asset('stisla/library/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @stack('style')
 
     <!-- Template CSS -->
-    <link rel="stylesheet"
-        href="{{ asset('stisla/css/style.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('stisla/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
 
     <!-- Start GA -->
-    <script async
-        src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -74,6 +67,11 @@
     <script src="{{ asset('stisla/js/custom.js') }}"></script>
 
     @stack('after-scripts')
+    {{-- <script>
+        $(document).ready(function() {
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+        });
+    </script> --}}
 </body>
 
 </html>
