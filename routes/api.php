@@ -31,6 +31,10 @@ Route::apiResource('category_api', \App\Http\Controllers\Api\CategoryController:
 // Route::apiResource('product', \App\Http\Controllers\Api\ProductController::class);//->middleware('auth:sanctum');
 Route::get('product', [App\Http\Controllers\Api\ProductController::class, 'index']);//->middleware('auth:sanctum');
 
+//--WARUNG
+//-----------------------------------------------------------------
+Route::apiResource('warung', \App\Http\Controllers\Api\WarungController::class);//->middleware('auth:sanctum');
+
 //--ADDRESS
 //-----------------------------------------------------------------
 Route::get('address-by-user', [App\Http\Controllers\Api\AddressController::class, 'addressByUser'])->middleware('auth:sanctum');

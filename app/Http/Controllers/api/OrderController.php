@@ -76,7 +76,7 @@ class OrderController extends Controller
         //--Request ke Midtrans:
         $midtrans = new CreateVAService($orderInserted->load('user', 'orderItems'));
         $apiResponse = $midtrans->getVA();
-        return response()->json($apiResponse);
+        // return response()->json($apiResponse);
 
         $orderInserted->payment_va_number = $apiResponse->va_numbers[0]->va_number;
         $orderInserted->save();
