@@ -53,7 +53,10 @@ Route::get('/get-exam-result', [UjianController::class, 'getExamResult'])->middl
 
 //--ORDER
 //-----------------------------------------------------------------
-Route::post('/order', [\App\Http\Controllers\Api\OrderController::class, 'order'])->middleware('auth:sanctum');
+Route::post('/make-order', [\App\Http\Controllers\Api\OrderController::class, 'makeOrder'])->middleware('auth:sanctum');
+Route::get('/order/{id}', [\App\Http\Controllers\Api\OrderController::class, 'getOrderById'])->middleware('auth:sanctum');
+Route::get('/order/status/{id}', [\App\Http\Controllers\Api\OrderController::class, 'checkOrderStatus'])->middleware('auth:sanctum');
+
 
 //--CALLBACK
 //-----------------------------------------------------------------

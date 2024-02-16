@@ -26,7 +26,7 @@ return new class extends Migration
             // status
             $table->enum('status', ['pending', 'paid', 'on_shipping', 'shipped', 'expired', 'cancelled']);
             // payment method
-            $table->enum('payment_method', ['bank', 'ewallet', 'cod','card']);
+            $table->enum('payment_method', ['bank_transfer', 'ewallet', 'cod','card']);
             // payment virtual account
             $table->string('payment_va_name')->nullable();
             $table->string('payment_va_number')->nullable();
