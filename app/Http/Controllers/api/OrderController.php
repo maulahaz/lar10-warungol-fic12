@@ -127,6 +127,17 @@ class OrderController extends Controller
         ]);
     }
 
+    //--Get Orders By UserId:
+    public function getOrdersByUserId(Request $request)
+    {
+        $orders = \App\Models\OrderModel::where('user_id', $request->user()->id)->get();
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'success',
+            'data' => $orders,
+        ]);
+    }
+
     //--Payment method Alias:
     private function _getPaymentType($paymentVAName)
     {

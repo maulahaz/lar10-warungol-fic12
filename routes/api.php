@@ -22,6 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//--AUTH
+//-----------------------------------------------------------------
+Route::post('update-fcm', [App\Http\Controllers\Api\AuthController::class, 'updateFcmId'])->middleware('auth:sanctum');
+
 //--CATEGORY
 //-----------------------------------------------------------------
 Route::apiResource('category_api', \App\Http\Controllers\Api\CategoryController::class);//->middleware('auth:sanctum');
@@ -56,7 +60,7 @@ Route::get('/get-exam-result', [UjianController::class, 'getExamResult'])->middl
 Route::post('/make-order', [\App\Http\Controllers\Api\OrderController::class, 'makeOrder'])->middleware('auth:sanctum');
 Route::get('/order/{id}', [\App\Http\Controllers\Api\OrderController::class, 'getOrderById'])->middleware('auth:sanctum');
 Route::get('/order/status/{id}', [\App\Http\Controllers\Api\OrderController::class, 'checkOrderStatus'])->middleware('auth:sanctum');
-
+Route::get('/order/user/{id}', [App\Http\Controllers\Api\OrderController::class, 'getOrdersByUserId'])->middleware('auth:sanctum');
 
 //--CALLBACK
 //-----------------------------------------------------------------

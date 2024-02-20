@@ -74,4 +74,19 @@ class AuthController extends Controller
             'message' => 'Logout success'
         ]);
     }
+
+    //--Update fcm_id:
+    public function updateFcmId(Request $request)
+    {
+        $validatedData = $request->validate([
+            'fcm_id' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $user->fcm_id = $validatedData['fcm_id'];
+        $user->save();
+        return response()->json([
+            'message' => 'Update success'
+        ]);
+    }
 }
