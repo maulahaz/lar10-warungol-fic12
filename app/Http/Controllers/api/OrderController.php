@@ -5,6 +5,9 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateVAService;
+use Illuminate\Notifications\Events\NotificationSent;
+use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Laravel\Firebase\Facades\Firebase;
 
 class OrderController extends Controller
 {
@@ -50,6 +53,7 @@ class OrderController extends Controller
             'shipping_cost' => $request->shipping_cost,
             'total_cost' => $subTotal + $request->shipping_cost,
         ];
+        // return response()->json($orderPostData);
 
 
         //--If Payment by Bank (payment_va_name and payment_va_number is not null):
@@ -119,7 +123,13 @@ class OrderController extends Controller
     //--Get Order by Id:
     public function getOrderById(Request $request)
     {
-        $order = \App\Models\OrderModel::where('id', $request->id)->first();
+        // $order = \App\Models\OrderModel::where('id', $request->id)->first();
+        //--Load User and Address:
+        // $order->load('user', 'address', 'orderItems');
+        $order = \App\Models\OrderModel::with('orderItems.product')->where('id', $request->id)->first();
+        //--Load User and Address:
+        $order->load('user', 'address');
+
         return response()->json([
             'status' => 'success',
             'msg' => 'success',
@@ -130,7 +140,8 @@ class OrderController extends Controller
     //--Get Orders By UserId:
     public function getOrdersByUserId(Request $request)
     {
-        $orders = \App\Models\OrderModel::where('user_id', $request->user()->id)->get();
+        $orders = \App\Models\OrderModel::where('user_id', $request->id)->get();
+        // return response()->json($request->id);
         return response()->json([
             'status' => 'success',
             'msg' => 'success',
